@@ -157,7 +157,7 @@ class snow_report {
     	if($this->showlink == 'yes') {
 			mt_srand(crc32($_SERVER['REQUEST_URI'])); // Keep links the same on the same page
 			
-			$urls = array('http://www.seodenver.com/snow-report/?ref=snow-report', 'http://wordpress.org/extend/plugins/snow-report/', 'http://www.denversnowremovalservice.com/weather/?ref=snow-report');
+			$urls = array('http://www.seodenver.com/snow-report/?ref=snow-report', 'http://wordpress.org/extend/plugins/snow-report/', 'http://www.denversnowremovalservice.com/?ref=snow-report');
 			$url = $urls[mt_rand(0, count($urls)-1)];
 			$names = array('Snow Report', 'Snow Report', 'Ski Report', 'Mountain Report');
 			$name = $names[mt_rand(0, count($names)-1)];
