@@ -1,5 +1,5 @@
 === Snow Report ===
-Tags: weather, skiing, snow, mountain, ski mountain, ski report, snow report, weather, snow country, snow depth, ski,snow-report, ski-report
+Tags: weather, skiing, snow, mountain, ski mountain, ski report, snow report, weather, snow country, snow depth, ski,snow-report, ski-report, liftopia, liftopia.com, lift tickets, ski tickets
 Requires at least: 2.8
 Tested up to: 3.0.1
 Stable tag: trunk
