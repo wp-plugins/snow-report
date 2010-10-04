@@ -1,20 +1,22 @@
 === Snow Report ===
-Tags: weather, skiing, snow, mountain, ski mountain, ski report, snow report, weather, snow country, snow depth, ski
+Tags: weather, skiing, snow, mountain, ski mountain, ski report, snow report, weather, snow country, snow depth, ski,snow-report, ski-report
 Requires at least: 2.8
 Tested up to: 3.0.1
 Stable tag: trunk
 Contributors: katzwebdesign
 Donate link:https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackkatz%40gmail%2ecom&item_name=Snow%20Report%20for%20WordPress&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
 
-Add ski mountain snow reports to your content or your sidebar.
+Get mountain snow reports (including base pack, recent snowfall, and more) in your content or your sidebar.
 
 == Description ==
 
-<h3>Catch some powder with a snow report!</h3>
+<h3>Catch some powder on your website with a snow report!</h3>
 
-This plugin uses the <a href="http://www.onthesnow.com" rel="nofollow">onthesnow.com</a> API to gather its mountain snow data.
+Display the snow conditions on your favorite mountain or in your area using the Snow Report plugin. Choose to display a resort's open status, snow base depth, 48 hour snowfall, surface conditions, and link to purchase lift tickets.
 
-<h3>Get ski reports for mountains in the following areas:</h3>
+This plugin uses the <a href="http://www.onthesnow.com" rel="nofollow">onthesnow.com</a> API to gather its mountain snow data, and <a href="http://bit.ly/lift-tickets" rel="nofollow">liftopia.com</a> for lift ticket links.
+
+<h3>Get ski conditions reports for mountains in the following areas:</h3>
 
 <strong>In the USA</strong><br />
 Alaska, Arizona, California, Colorado, Connecticut, Idaho, Illinois, Indiana, Iowa, Maine, Maryland, Massachusetts, Michigan, Minnesota, Missouri, Montana, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, Ohio, Oregon, Pennsylvania, South Dakota, Tennessee, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming
@@ -37,22 +39,9 @@ Check out the Screenshots section for pictures.
 The plugin can be configured in two ways: 
 
 1. Configure the plugin in the admin's Snow Report settings page, then add `[snow_report]` to your content where you want the snow_report to appear.
-2. Go crazy with the `[snow_report]` shortcode.
+2. Go crazy with the `[snow_report]` shortcode. See the "FAQ" tab above.
 
-<h4>Using the `[snow_report]` Shortcode</h4>
-If you're a maniac for shortcodes, and you want all control all the time, this is a good way to use it.
-
-<strong>The shortcode supports the following settings:</strong>
-
-* <code>location="Colorado"</code> - It must exactly match one of the "Report Location" drop-down options on the left
-* <code>caption="Ski Reports for Colorado"</code> - Add a caption to your table (it's like a title) 
-* <code>measurement='inches'</code> - Use either <code>inches</code> or <code>cm</code>
-* <code>align='center'</code> - Align the table cells. Choose from <code>left</code>, <code>center</code>, or <code>right</code>
-* <code>noresults="Snow reports aren&rsquo;t available right now."</code> - Message shown when no results are available
-* <code>showclosed="yes"</code> - Show seasonally closed mountains (<code>yes</code> or <code>no</code>)
-* <code>class="css_table_class"</code> - Change the CSS class of the generated snow_report table
-
-<h4>Learn more on the <a href="http://www.seodenver.com/snow-report/">official plugin page</a></h4>
+<h4>Learn more on the <a href="http://www.seodenver.com/snow-report/">official Snow Report plugin page</a></h4>
 
 == Installation ==
 
@@ -71,6 +60,32 @@ If you're a maniac for shortcodes, and you want all control all the time, this i
 
 == Frequently Asked Questions == 
 
+= Using the <code>[snow_report]</code> Shortcode =
+If you're a maniac for shortcodes, and you want all control all the time, this is a good way to use it.
+
+<strong>The shortcode supports the following settings:</strong>
+<ul>
+<li><code>location="Colorado"</code> - It must exactly match one of the "Report Location" drop-down options on the left</li>
+<li><code>caption="Ski Reports for Colorado"</code> - Add a caption to your table (it's like a title) </li>
+<li><code>measurement='inches'</code> - Use either <code>inches</code> or <code>cm</code></li>
+<li><code>align='center'</code> - Align the table cells. Choose from <code>left</code>, <code>center</code>, or <code>right</code></li>
+<li><code>noresults="Snow reports aren&rsquo;t available right now."</code> - Message shown when no results are available</li>
+<li><code>show_tickets="yes"</code> - Show a link to purchase lift tickets for each displayed resort (<code>yes</code> or <code>no</code>)</li>
+<li><code>cache_results="yes"</code> - Whether to cache results or not. Setting this to "no" is not encouraged. (<code>yes</code> or <code>no</code>)</li>
+<li><code>ticket_text="%%resort%% lift tickets"</code> - Format the text for the buy tickets link. <code>%%resort%%</code> will be replaced by the resort name.</li>
+<li><code>showclosed="yes"</code> - Show seasonally closed mountains (<code>yes</code> or <code>no</code>)</li>
+<li><code>class="css_table_class"</code> - Change the CSS class of the generated report table</li>
+<li><code>showtablelink="yes"</code> - Show a link under the snow report table that lets people know this plugin was used</li>
+<li><code>id="1"</code> - If you are showing more than one snow report for the same location on a page, use <code>&lt;id&gt;</code> and give them unique ID numbers. Otherwise, they will be identical (if caching is turned on).</li>
+<li><code>columns="status,base,48hr,surface,tickets"</code> - The columns that will be shown in the table. <h5>How to define shown columns:</h5>
+	<ul style="margin-left:2em; display:list-item!important; list-style:disc outside;">
+		<li>Show only if a resort is open: <code>columns="status"</code>.</li>
+		<li>Show base pack and lift tickets: <code>columns="base,tickets"</code>.</li>
+		<li>Show 48 hour snowfall and surface conditions: <code>columns="48hr,surface"</code>.</li>
+	</ul>
+</li>
+</ul>
+
 = I want to modify the snow report output. How do I do that? =
 
 <pre>
@@ -87,14 +102,34 @@ add_filter('snow_report_output', 'replace_snow_data');
 * This plugin is released under a GPL license.
 
 = This plugin slows down my site. =
-It is recommended to use a caching plugin (such as WP Super Cache) with this plugin; that way the snow_report isn't re-loaded every page load.
+Version 1.2 adds caching functionality. To enable, go to the options page and check the box next to "Cache Results." If that doesn't work as expected, it is recommended to use a caching plugin (such as WP Super Cache) so that the report isn't re-generated each page load.
+
+
+= How do I have two snow reports of the same location on the same page? =
+If you're going to have two reports for the same area on the same page, you should add the `id` attribute to your shortcode:
+`[snow_report location="Colorado" id="1" caption="Test 1"] is now different from [snow_report location="Colorado" id="2" caption="Test 2"]`
+
+This way, the caching functionality will display different results.
+
+__Note:__ This is only an issue when caching is turned on.
 
 == Changelog ==
+
+= 1.1 =
+* Added results caching - speeds up the display of the table by storing the results in a cache (with shortcode support)
+* Choose which columns to display - show or hide columns on a per-report basis (with shortcode support)
+* Added option to show link to purchase lift tickets
+* Added CSS classes to table headings (`&lt;th&gt;`) and table cells (`&lt;td&gt;`)
+* Added plugin deactivation and uninstall procedures to keep your databases squeaky clean
 
 = 1.0 =
 * Initial launch
 
 == Upgrade Notice ==
+
+= 1.1 =
+* Fixes issue with plugin activation conflicting with the <a href="http://wordpress.org/extend/plugins/wunderground/">WP Wunderground</a> plugin
+* May fix shortcode display <a href="http://wordpress.org/support/topic/plugin-snow-report-doesnt-work-on-my-site">issues reported on WordPress.org</a>
 
 = 1.0 = 
 * Blastoff!
