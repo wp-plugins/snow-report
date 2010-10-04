@@ -3,7 +3,7 @@
 Plugin Name: Snow Report
 Plugin URI: http://www.seodenver.com/snow-report/
 Description: Get mountain snow reports (including base pack, recent snowfall, and more) in your content or your sidebar.
-Version: 1.1
+Version: 1.1.1
 Author: Katz Web Services, Inc.
 Author URI: http://www.seodenver.com/
 */
@@ -390,14 +390,18 @@ EOD;
 	function makeTicket($name, $location, $ticket_text) {
 		if(empty($this->ticketList)) { $this->ticketList = $this->buildTickets(); }
 		$list = $this->ticketList;
-		if(function_exists('str_ireplace')) {
-			$ticket_text = str_ireplace('%%resort%%', $name, $ticket_text);
+		
+		if(isset($list[$location][$name]) && !empty($list[$location][$name])) {
+			if(function_exists('str_ireplace')) {
+				$ticket_text = str_ireplace('%%resort%%', $name, $ticket_text);
+			} else {
+				$ticket_text = str_replace('%%resort%%', $name, $ticket_text);
+				$ticket_text = str_replace('%%Resort%%', $name, $ticket_text);
+			}
+			return '<a href="'.$list[$location][$name].'" rel="nofollow" title="Purchase lift tickets for '.$name.'">'.$ticket_text.'</a>';
 		} else {
-			$ticket_text = str_replace('%%resort%%', $name, $ticket_text);
-			$ticket_text = str_replace('%%Resort%%', $name, $ticket_text);
+			return '';
 		}
-
-		return '<a href="'.$list[$location][$name].'" rel="nofollow" title="Purchase lift tickets for '.$name.'">'.$ticket_text.'</a>';
 	}
 	
 	function build_snow_report($atts = array(), $content=null) {

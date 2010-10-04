@@ -98,7 +98,7 @@ add_filter('snow_report_output', 'replace_snow_data');
 * This plugin is released under a GPL license.
 
 = This plugin slows down my site. =
-Version 1.2 adds caching functionality. To enable, go to the options page and check the box next to "Cache Results." If that doesn't work as expected, it is recommended to use a caching plugin (such as WP Super Cache) so that the report isn't re-generated each page load.
+Version 1.1 added caching functionality. To enable, go to the options page and check the box next to "Cache Results." If that doesn't work as expected, it is recommended to use a caching plugin (such as WP Super Cache) so that the report isn't re-generated each page load.
 
 
 = How do I have two snow reports of the same location on the same page? =
@@ -111,6 +111,9 @@ __Note:__ This is only an issue when caching is turned on.
 
 == Changelog ==
 
+= 1.1.1 = 
+* Updated the lift tickets feature so that if a resort has no link, to display nothing (instead of an empty link)
+
 = 1.1 =
 * Added results caching - speeds up the display of the table by storing the results in a cache (with shortcode support)
 * Choose which columns to display - show or hide columns on a per-report basis (with shortcode support)
@@ -122,6 +125,9 @@ __Note:__ This is only an issue when caching is turned on.
 * Initial launch
 
 == Upgrade Notice ==
+
+= 1.1.1 = 
+* Updated the lift tickets feature so that if a resort has no link, to display nothing (instead of an empty link)
 
 = 1.1 =
 * Fixes issue with plugin activation conflicting with the <a href="http://wordpress.org/extend/plugins/wunderground/">WP Wunderground</a> plugin
