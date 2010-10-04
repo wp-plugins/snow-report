@@ -60,31 +60,27 @@ The plugin can be configured in two ways:
 
 == Frequently Asked Questions == 
 
-= Using the <code>[snow_report]</code> Shortcode =
+= Using the `[snow_report]` Shortcode =
 If you're a maniac for shortcodes, and you want all control all the time, this is a good way to use it.
 
 <strong>The shortcode supports the following settings:</strong>
-<ul>
-<li><code>location="Colorado"</code> - It must exactly match one of the "Report Location" drop-down options on the left</li>
-<li><code>caption="Ski Reports for Colorado"</code> - Add a caption to your table (it's like a title) </li>
-<li><code>measurement='inches'</code> - Use either <code>inches</code> or <code>cm</code></li>
-<li><code>align='center'</code> - Align the table cells. Choose from <code>left</code>, <code>center</code>, or <code>right</code></li>
-<li><code>noresults="Snow reports aren&rsquo;t available right now."</code> - Message shown when no results are available</li>
-<li><code>show_tickets="yes"</code> - Show a link to purchase lift tickets for each displayed resort (<code>yes</code> or <code>no</code>)</li>
-<li><code>cache_results="yes"</code> - Whether to cache results or not. Setting this to "no" is not encouraged. (<code>yes</code> or <code>no</code>)</li>
-<li><code>ticket_text="%%resort%% lift tickets"</code> - Format the text for the buy tickets link. <code>%%resort%%</code> will be replaced by the resort name.</li>
-<li><code>showclosed="yes"</code> - Show seasonally closed mountains (<code>yes</code> or <code>no</code>)</li>
-<li><code>class="css_table_class"</code> - Change the CSS class of the generated report table</li>
-<li><code>showtablelink="yes"</code> - Show a link under the snow report table that lets people know this plugin was used</li>
-<li><code>id="1"</code> - If you are showing more than one snow report for the same location on a page, use <code>&lt;id&gt;</code> and give them unique ID numbers. Otherwise, they will be identical (if caching is turned on).</li>
-<li><code>columns="status,base,48hr,surface,tickets"</code> - The columns that will be shown in the table. <h5>How to define shown columns:</h5>
-	<ul style="margin-left:2em; display:list-item!important; list-style:disc outside;">
-		<li>Show only if a resort is open: <code>columns="status"</code>.</li>
-		<li>Show base pack and lift tickets: <code>columns="base,tickets"</code>.</li>
-		<li>Show 48 hour snowfall and surface conditions: <code>columns="48hr,surface"</code>.</li>
-	</ul>
-</li>
-</ul>
+
+* `location="Colorado"` - It must exactly match one of the "Report Location" drop-down options on the left
+* `caption="Ski Reports for Colorado"` - Add a caption to your table (it's like a title) 
+* `measurement='inches'` - Use either `inches` or `cm`
+* `align='center'` - Align the table cells. Choose from `left`, `center`, or `right`
+* `noresults="Snow reports aren&rsquo;t available right now."` - Message shown when no results are available
+* `show_tickets="yes"` - Show a link to purchase lift tickets for each displayed resort (`yes` or `no`)
+* `cache_results="yes"` - Whether to cache results or not. Setting this to "no" is not encouraged. (`yes` or `no`)
+* `ticket_text="%%resort%% lift tickets"` - Format the text for the buy tickets link. `%%resort%%` will be replaced by the resort name.
+* `showclosed="yes"` - Show seasonally closed mountains (`yes` or `no`)
+* `class="css_table_class"` - Change the CSS class of the generated report table
+* `showtablelink="yes"` - Show a link under the snow report table that lets people know this plugin was used
+* `id="1"` - If you are showing more than one snow report for the same location on a page, use `&lt;id&gt;` and give them unique ID numbers. Otherwise, they will be identical (if caching is turned on).
+* `columns="status,base,48hr,surface,tickets"` - The columns that will be shown in the table. <br /><strong>How to define shown columns:</strong>
+	* Show only if a resort is open: `columns="status"`.
+	* Show base pack and lift tickets: `columns="base,tickets"`.
+	* Show 48 hour snowfall and surface conditions: `columns="48hr,surface"`.
 
 = I want to modify the snow report output. How do I do that? =
 
@@ -119,7 +115,7 @@ __Note:__ This is only an issue when caching is turned on.
 * Added results caching - speeds up the display of the table by storing the results in a cache (with shortcode support)
 * Choose which columns to display - show or hide columns on a per-report basis (with shortcode support)
 * Added option to show link to purchase lift tickets
-* Added CSS classes to table headings (`&lt;th&gt;`) and table cells (`&lt;td&gt;`)
+* Added CSS classes to table headings (`<th>`) and table cells (`<td>`)
 * Added plugin deactivation and uninstall procedures to keep your databases squeaky clean
 
 = 1.0 =
