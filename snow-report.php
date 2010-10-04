@@ -317,9 +317,8 @@ class snow_report {
 		<h5>The following code&hellip;</h5>
 		<p><code>$shortcode</code></p>
 		<h5>&hellip;will output this table:</h5>
-		$report
-		
-	EOD;
+		$report		
+EOD;
 		return $html;
     }
     
