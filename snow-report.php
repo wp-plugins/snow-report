@@ -3,7 +3,7 @@
 Plugin Name: Snow Report
 Plugin URI: http://www.seodenver.com/snow-report/
 Description: Get mountain snow reports (including base pack, recent snowfall, and more) in your content or your sidebar.
-Version: 1.1.1
+Version: 1.1.2
 Author: Katz Web Services, Inc.
 Author URI: http://www.seodenver.com/
 */
@@ -248,17 +248,17 @@ class snow_report {
     	}
     }
     
-    function tra($url) {
+    function tra($url = NULL) {
     	#http://www.tkqlhce.com/click-3923826-10472356?url=http%3A%2F%2Ftravel.travelocity.com%2Fel.do%3Fea_sid%3D%25zs%26ea_aid%3D%25za%26ea_pid%3D%25zp%26Service%3DCJUS%26dest%3Dhttp%3A%2F%2Ftravel.travelocity.com%2Fhotel%2FHotelDateLessList.do%3FmarketId%3D14%26Service%3DCJUS // Travelocity
     	return 'http://www.tkqlhce.com/click-3923826-10472356?url='.urlencode($url).'&amp;cjsku=1';
     }
     
-    function lif($url) {
+    function lif($url = NULL) {
     	return $this->av($url);
     	return 'http://www.jdoqocy.com/click-3923826-10718243?url=http://www.liftopia.com/ski-resort-info/resort/'.urlencode($url);
     }
     
-    function av($url) {
+    function av($url = NULL) {
     	if(!empty($url)) { 
     		return 'http://www.avantlink.com/click.php?tt=cl&amp;mi=10065&amp;pw=35803&amp;ctc=plugin&amp;url='.urlencode($url);
     	} else {

@@ -111,6 +111,9 @@ __Note:__ This is only an issue when caching is turned on.
 
 == Changelog ==
 
+= 1.1.2 =
+* Fixed `Missing argument 1 for snow_report::av()` bug (thanks to <a href="http://www.summitsnowreport.com" rel="nofollow">Nick</a> for sharing)
+
 = 1.1.1 = 
 * Updated the lift tickets feature so that if a resort has no link, to display nothing (instead of an empty link)
 
@@ -125,6 +128,9 @@ __Note:__ This is only an issue when caching is turned on.
 * Initial launch
 
 == Upgrade Notice ==
+
+= 1.1.2 =
+* Fixed `Missing argument 1 for snow_report::av()` bug (thanks to <a href="http://www.summitsnowreport.com" rel="nofollow">Nick</a> for sharing)
 
 = 1.1.1 = 
 * Updated the lift tickets feature so that if a resort has no link, to display nothing (instead of an empty link)
