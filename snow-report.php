@@ -3,7 +3,7 @@
 Plugin Name: Snow Report
 Plugin URI: http://www.seodenver.com/snow-report/
 Description: Get mountain snow reports (including base pack, recent snowfall, and more) in your content or your sidebar.
-Version: 1.2
+Version: 1.2.1
 Author: Katz Web Services, Inc.
 Author URI: http://www.seodenver.com/
 */
@@ -479,8 +479,8 @@ EOD;
 			 		if(!preg_match('/Permanently(?:\s+)?closed/ism', $rsrow->description) && ($closed && $this->show_closed == 'yes' || !$closed)) { 
 					    $row = @simplexml_load_string($rsrow->asXML()); 
 					    $row = $this->simpleXMLToArray($row);
-	
-					    if(strtolower($this->measurement) == 'cm') { $symbol = 'cm'; $mName = 'cm.'; } else { $symbol = '&quot;'; $mName = 'in.'; }
+						
+					    if(strtolower($measurement) == 'cm') { $symbol = 'cm'; $mName = 'cm.'; } else { $symbol = '&quot;'; $mName = 'in.'; }
 					    
 					    foreach($row as $key => $item) {
 					    	if(is_numeric($item) && $key != 'resort_id' && $this->measurement == 'cm') {

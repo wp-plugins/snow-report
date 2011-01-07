@@ -111,6 +111,9 @@ __Note:__ This is only an issue when caching is turned on.
 
 == Changelog ==
 
+= 1.2.1 = 
+* Fixed shortcode `measurement` setting - now `measurement="cm"` works properly.
+
 = 1.2 = 
 * Improved caching of tables; this also fixed issues with columns not showing up when checked.
 * Added `cache_hours` option for shortcode and plugin. Defaults to 12 hours.
@@ -134,6 +137,9 @@ __Note:__ This is only an issue when caching is turned on.
 * Initial launch
 
 == Upgrade Notice ==
+
+= 1.2.1 = 
+* Fixed shortcode `measurement` setting - now `measurement="cm"` works properly.
 
 = 1.2 = 
 * Improved caching of tables; this also fixed issues with columns not showing up when checked.
