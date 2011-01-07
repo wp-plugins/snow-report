@@ -1,7 +1,7 @@
 === Snow Report ===
 Tags: weather, skiing, snow, mountain, ski mountain, ski report, snow report, weather, snow country, snow depth, ski,snow-report, ski-report, liftopia, liftopia.com, lift tickets, ski tickets
 Requires at least: 2.8
-Tested up to: 3.0.1
+Tested up to: 3.0.4
 Stable tag: trunk
 Contributors: katzwebdesign
 Donate link:https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackkatz%40gmail%2ecom&item_name=Snow%20Report%20for%20WordPress&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
@@ -111,6 +111,12 @@ __Note:__ This is only an issue when caching is turned on.
 
 == Changelog ==
 
+= 1.2 = 
+* Improved caching of tables; this also fixed issues with columns not showing up when checked.
+* Added `cache_hours` option for shortcode and plugin. Defaults to 12 hours.
+* Improved the look of the below-table link
+* Added an HTML comment above the table to let users know when an individual mountain feed isn't working
+
 = 1.1.2 =
 * Fixed `Missing argument 1 for snow_report::av()` bug (thanks to <a href="http://www.summitsnowreport.com" rel="nofollow">Nick</a> for sharing)
 
@@ -128,6 +134,12 @@ __Note:__ This is only an issue when caching is turned on.
 * Initial launch
 
 == Upgrade Notice ==
+
+= 1.2 = 
+* Improved caching of tables; this also fixed issues with columns not showing up when checked.
+* Improved the look of the below-table link
+* Added `cache_hours` option for shortcode and plugin. Defaults to 12 hours.
+* Added an HTML comment above the table to let users know when an individual mountain feed isn't working
 
 = 1.1.2 =
 * Fixed `Missing argument 1 for snow_report::av()` bug (thanks to <a href="http://www.summitsnowreport.com" rel="nofollow">Nick</a> for sharing)
