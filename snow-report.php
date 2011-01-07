@@ -283,7 +283,7 @@ class snow_report {
 	    $date2 = date('m-d-y');
 	    $date = date('m/d/Y');
 	    $weekday = date('l');
-	    $shortcode = '[snow_report location="'.$this->location.'" mountain="" caption="Snow Reports for Ski Mountains in '.$this->location.'" align="left" show_tickets="yes" ticket_text="%%resort%% lift tickets" cache_results="no" columns="open,base,tickets"]';
+	    $shortcode = '[snow_report location="'.$this->location.'" mountain="" caption="Snow Reports for Ski Mountains in '.$this->caption.'" align="'.$this->align.'" show_tickets="'.$this->columns['tickets'].'" ticket_text="%%resort%% lift tickets" cache_results="'.$this->cache_results.'" columns="open,base,tickets"]';
 	    $report = do_shortcode($shortcode);
 		$html = <<<EOD
 		<h4>Adding the Snow Report to your Content</h4>	
