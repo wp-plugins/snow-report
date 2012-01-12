@@ -116,7 +116,7 @@ class snow_report {
                                 'id' => 'snow_report_mountain',
                                 'label' => __('Specific Mountain (Optional - <strong>Requires "Report Location"</strong>)', 'snow_report'),
                                 'content' => "<input type='text' name='snow_report[mountain]' id='snow_report_mountain' value='".esc_attr($this->mountain)."' size='40' style='width:95%!important;' />",
-                                'desc' => 'If you have a specific mountain in mind, add it here (<strong>EXACTLY as it appears</strong> in the table!!!)'
+                                'desc' => 'If you have a specific mountain in mind, add it here (<strong>EXACTLY as it appears</strong> in the table!). If this doesn\'t work, <a href="http://wordpress.org/support/topic/plugin-snow-report-showing-only-one-resort-using-shortcode">read this support ticket</a>.'
                         );
                             
                         $rows[] = array(
