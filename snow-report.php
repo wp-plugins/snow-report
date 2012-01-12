@@ -3,7 +3,7 @@
 Plugin Name: Snow Report
 Plugin URI: http://www.seodenver.com/snow-report/
 Description: Get mountain snow reports (including base pack, recent snowfall, and more) in your content or your sidebar.
-Version: 1.2.1
+Version: 1.2.2
 Author: Katz Web Services, Inc.
 Author URI: http://www.seodenver.com/
 */
@@ -89,7 +89,7 @@ class snow_report {
     }
     
     function admin() {
-        add_options_page('Snow Report', 'Snow Report', 'administrator', 'snow_report', array(&$this, 'admin_page'));  
+        add_options_page(__('Snow Report', 'snow-report'), __('Snow Report', 'snow-report'), 'administrator', 'snow_report', array(&$this, 'admin_page'));  
     }
     
     function admin_page() {
@@ -400,7 +400,7 @@ EOD;
 	function makeTicket($name, $location, $ticket_text) {
 		if(empty($this->ticketList)) { $this->ticketList = $this->buildTickets(); }
 		$list = $this->ticketList;
-		
+		#return $location;
 		if(isset($list[$location][$name]) && !empty($list[$location][$name])) {
 			if(function_exists('str_ireplace')) {
 				$ticket_text = str_ireplace('%%resort%%', $name, $ticket_text);
@@ -436,7 +436,7 @@ EOD;
 		// Now saves all the settings in the transient key
 		$transientSettings = $settings;
 		unset($transientSettings['triedonce']);
-		$transientKey = 'sr_'.sha1(implode('_', $transientSettings));
+		$transientKey = 'sr_'.sha1(@implode('_', $transientSettings));
 		
 	    // Get cache if exists.
 	    if($transient = $this->get_transient($transientKey, $cache_results, $location, $mountain, $id, $triedonce)) { return $transient; }
@@ -473,8 +473,10 @@ EOD;
 				
 				// Calculate the width of each column
 				$cols = 1; foreach($columns as $c) { if($c != 'no') { $cols++; }} $width = round(100/$cols, 2);
-		
-			 	foreach($xml->xpath('//item') as $rsrow){ 
+				
+				$tablebody = '';
+				
+			 	foreach($xml->xpath('//item') as $rsrow) {
 			 		$closed = preg_match('/Closed/ism', $rsrow->description);
 			 		if(!preg_match('/Permanently(?:\s+)?closed/ism', $rsrow->description) && ($closed && $this->show_closed == 'yes' || !$closed)) { 
 					    $row = @simplexml_load_string($rsrow->asXML()); 
@@ -640,6 +642,7 @@ EOD;
 				'Copper Mountain' => $this->av('http://www.liftopia.com/ski-resort-info/resort/303009/CO/Copper-Mountain.htm'), // $this->tra('http://activities.travelocity.com/nexres/activities/detail.cgi?src=10010405&supplier_id=30013')
 				'Crested Butte' => $this->av('http://www.liftopia.com/ski-resort-info/resort/303010/CO/Crested-Butte-Mountain-Resort.htm'),
 				'Durango' => $this->av('http://www.liftopia.com/ski-resort-info/resort/303017/CO/Durango-Mountain-Resort.htm'),
+				'Echo Mountain' => $this->av('http://www.liftopia.com/ski-resort-info/resort/720001/CO/Echo-Mountain.htm'),
 				'Echo' => $this->av('http://www.liftopia.com/ski-resort-info/resort/720001/CO/Echo-Mountain.htm'),
 				'Eldora' => $this->av('http://www.liftopia.com/ski-resort-info/resort/303011/CO/Eldora.htm'),
 				'Keystone' => $this->av('http://www.liftopia.com/ski-resort-info/resort/303014/CO/Keystone.htm'),
@@ -688,7 +691,7 @@ EOD;
 	    		'Perfect North Slopes' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/812001/IN/Perfect-North-Slopes.htm')
 	    	),
 	    	'Iowa' => array(
-	    		'Mt. Crescent' =>'',
+	    		'Mt. Crescent' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/712003/IA/Mt-Crescent.htm'),
 	    		'Seven Oaks' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/319003/IA/Seven-Oaks---IA.htm'),
 	    		'Sundown Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/319002/IA/Sundown-Mountain.htm')
 	    	),
@@ -701,9 +704,9 @@ EOD;
 	    		'Camden' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/207002/ME/Camden-Snow-Bowl.htm'),
 	    		'Lost Valley' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/207003/ME/Lost-Valley.htm'),
 	    		'Mt. Abram' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/207004/ME/Mt.-Abram-Family-Resort.htm'),
-	    		'Mt. Jefferson' =>'',
+	    		'Mt. Jefferson' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/207012/ME/Mt-Jefferson.htm'),
 	    		'New Hermon Mtn.' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/207005/ME/New-Hermon-Mtn.htm'),
-	    		'Saddleback' =>'',
+	    		'Saddleback' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/207006/ME/Saddleback.htm'),
 	    		'Shawnee Peak' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/207007/ME/Shawnee-Peak.htm'),
 	    		'Sugarloaf' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/207008/ME/Sugarloaf.htm'),
 				'Sunday River' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/207009/ME/Sunday-River.htm')
@@ -714,9 +717,9 @@ EOD;
 	    	'Massachusetts' => array(
 	    		'Berkshire East' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/413001/MA/Berkshire-East.htm'),
 	    		'Blandford' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/413010/MA/Blandford.htm'),
-	    		'Blue Hills' =>'',
+	    		'Blue Hills' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/617001/MA/Blue-Hills.htm'),
 	    		'Bousquet' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/413002/MA/Bousquet.htm'),
-	    		'Bradford' =>'',
+	    		'Bradford' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/508002/MA/Bradford.htm'),
 	    		'Catamount' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/413005/MA/Catamount.htm'),
 	    		'Jiminy Peak' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/413006/MA/Jiminy-Peak.htm'),
 	    		'Nashoba Valley' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/508004/MA/Nashoba-Valley.htm'),
@@ -734,7 +737,7 @@ EOD;
 	    		'Boyne Highlands' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/616002/MI/Boyne-Highlands.htm'),
 	    		'Boyne Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/616003/MI/Boyne-Mountain.htm'),
 	    		'Caberfae Peaks' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/616004/MI/Caberfae-Peaks.htm'),
-	    		'Cannonsburg' =>'',
+	    		'Cannonsburg' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/616005/MI/Cannonsburg.htm'),
 	    		'Crystal Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/616006/MI/Crystal-Mountain.htm'),
 	    		'Indianhead' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/906004/MI/Indianhead.htm'),
 	    		'Marquette' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/906005/MI/Marquette.htm'),
@@ -755,7 +758,7 @@ EOD;
 	    	),
 	    	'Minnesota' => array(
 	    		'Afton Alps' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/612002/MN/Afton-Alps.htm'),
-	    		'Andes Tower Hills' =>'',
+	    		'Andes Tower Hills' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/612003/MN/Andes-Tower-Hills.htm'),
 	    		'Buck Hill' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/612004/MN/Buck-Hill.htm'),
 	    		'Buena Vista' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/218001/MN/Buena-Vista.htm'),
 	    		'Coffee Mill' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/612005/MN/Coffee-Mill.htm'),
@@ -770,7 +773,7 @@ EOD;
 	    	),
 	    	'Missouri' => array(
 	    		'Hidden Valley' => '',
-	    		'Snow Creek' => ''
+	    		'Snow Creek' => $this->av('http://www.liftopia.com/ski-resort-info/resort/816001/MO/Snow-Creek.htm')
 	    	),
 	    	'Montana' => array(
 				'Big Sky' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/406002/MT/Big-Sky-Resort.htm'),
@@ -784,7 +787,7 @@ EOD;
 				'Moonlight Basin' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/406106/MT/Moonlight-Basin.htm'),
 				'Red Lodge Mtn.' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/406009/MT/Red-Lodge.htm'),
 				'Showdown' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/406011/MT/Showdown.htm'),
-				'Teton Pass' =>'',
+				'Teton Pass' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/999988321/MT/Teton_Pass_Ski_Resort.htm'),
 				'Whitefish' => $this->av('http://www.liftopia.com/ski-resort-info/resort/406001/MT/Whitefish.htm')
 	    	),
 	    	'Nevada' => array(
@@ -794,10 +797,10 @@ EOD;
 	    	),
 	    	'New Hampshire' => array(
 	    		'Attitash' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/603002/NH/Attitash.htm'),
-	    		'Balsams Wilderness' =>'',
+	    		'Balsams Wilderness' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/603003/NH/Balsams-Wilderness.htm'),
 	    		'Black Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/603004/NH/Black-Mountain-Ski-Area.htm'),
 	    		'Bretton Woods' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/603005/NH/Bretton-Woods.htm'),
-	    		'Cannon Mountain' =>'',
+	    		'Cannon Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/603006/NH/Cannon-Mountain.htm'),
 	    		'Cranmore Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/603007/NH/Cranmore-Mountain.htm'),
 	    		'Crotched Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/603028/NH/Crotched-Mountain-Resort.htm'),
 	    		'Dartmouth Skiway' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/603008/NH/Dartmouth-Skiway.htm'),
@@ -848,7 +851,7 @@ EOD;
 	    		'Mt. Peter' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/914004/NY/Mt-Peter.htm'),
 	    		"Peek'n Peak" =>$this->av('http://www.liftopia.com/ski-resort-info/resort/716005/NY/Peek'),
 	    		'Plattekill Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/607003/NY/Plattekill-Mountain.htm'),
-	    		'Royal Mountain' =>'',
+	    		'Royal Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/518017/NY/Royal-Mountain.htm'),
 	    		'Snow Ridge' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/315009/NY/Snow-Ridge.htm'),
 	    		'Song Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/315006/NY/Song-Mountain.htm'),
 	    		'Swain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/607005/NY/Swain.htm'),
@@ -875,7 +878,7 @@ EOD;
 	    		'Boston Mills' => $this->av('http://www.liftopia.com/ski-resort-info/resort/216002/OH/Boston-Mills/Brandywine.htm'),
 	    		'Brandywine' => $this->av('http://www.liftopia.com/ski-resort-info/resort/216002/OH/Boston-Mills/Brandywine.htm'),
 	    		'Mad River' => $this->av('http://www.liftopia.com/ski-resort-info/resort/513001/OH/Mad-River.htm'),
-	    		'Snow Trails' => ''
+	    		'Snow Trails' => $this->av('http://www.liftopia.com/ski-resort-info/resort/419002/OH/Snow-Trails.htm'),
 	    	),
 	    	'Oregon' => array(
 	    		'Anthony Lakes' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/503001/OR/Ski-Anthony-Lakes.htm'),
@@ -891,31 +894,31 @@ EOD;
 			),
 	    	'Pennsylvania' => array(
 	    		'Alpine Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/717001/PA/Alpine-Mountain.htm'),
-	    		'Bear Creek' =>'',
-	    		'Big Bear' =>'',
+	    		'Bear Creek' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/215003/PA/Bear-Creek.htm'),
+	    		'Big Bear' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/717016/PA/Ski-Big-Bear.htm'),
 	    		'Big Boulder' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/717002/PA/Big-Boulder.htm'),
 	    		'Blue Knob' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/814001/PA/Blue-Knob.htm'),
 	    		'Blue Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/215002/PA/Blue-Mountain.htm'),
 				'Camelback'	=> $this->av('http://www.liftopia.com/ski-resort-info/resort/717003/PA/Camelback-Mountain-Resort.htm'),
-	    		'Eagle Rock' =>'',
+	    		'Eagle Rock' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/412004/PA/Eagle-Rock.htm'),
 	    		'Elk Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/717005/PA/Elk-Mountain.htm'),
-	    		'Hidden Valley' =>'',
+	    		'Hidden Valley' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/814005/PA/Hidden-Valley.htm'),
 	    		'Jack Frost' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/717006/PA/Jack-Frost.htm'),
 	    		'Liberty' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/717009/PA/Liberty-Mountain.htm'),
 	    		'Seven Springs' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/814002/PA/Seven-Springs.htm'),
 	    		'Shawnee Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/717008/PA/Shawnee-Mountain-Ski-Area.htm'),
 	    		'Ski Denton' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/814003/Pa/Ski-Denton.htm'),
-	    		'Ski Roundtop' =>'',
+	    		'Ski Roundtop' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/717015/PA/Ski-Roundtop.htm'),
 	    		'Ski Sawmill' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/717011/PA/Ski-Sawmill.htm'),
 	    		'Sno Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/717017/PA/Sno-Mountain.htm'),
-	    		'Spring Mountain' =>'',
-	    		'Tanglwood' =>'',
+	    		'Spring Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/215004/PA/Spring-Mountain.htm'),
+	    		'Tanglwood' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/717012/PA/Tanglwood.htm'),
 	    		'Tussey Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/814004/PA/Tussey-Mountain.htm'),
 				'Whitetail' => $this->av('http://www.liftopia.com/ski-resort-info/resort/717013/PA/Whitetail.htm')
 	    	),
 	    	'South Dakota' => array(
 	    		'Deer Mountain' => '',
-	    		'Terry Peak' => ''
+	    		'Terry Peak' => $this->av('http://www.liftopia.com/ski-resort-info/resort/999988373/SD/Terry_Peak.htm'),
 	    	),
 	    	'Tennessee' => array(
 	    		'Ober Gatlinburg' => $this->av('http://www.liftopia.com/ski-resort-info/resort/615001/TN/Ober-Gatlinburg.htm')
@@ -963,8 +966,8 @@ EOD;
 	    		'49 Degrees North' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/509001/WA/49-Degrees-North.htm'),
 	    		'Alpental' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/425715/WA/Summit-at-Snoqualmie-Alpental.htm'),
 	    		'Bluewood' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/509003/WA/Bluewood.htm'),
-	    		'Crystal Mountain' =>'',
-	    		'Mission Ridge' =>'',
+	    		'Crystal Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/206002/WA/Crystal-Mountain.htm'),
+	    		'Mission Ridge' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/509002/WA/Mission-Ridge.htm'),
 	    		'Mt. Baker' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/206003/WA/Mt-Baker.htm'),
 	    		'Mt. Spokane' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/509005/WA/Mt-Spokane.htm'),
 	    		'Stevens Pass' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/206004/WA/Stevens-Pass.htm'),
@@ -989,7 +992,7 @@ EOD;
 	    		'Highlands of Olympia' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/414010/WI/Highlands-of-Olympia.htm'),
 				'Mount La Crosse' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/608004/WI/Mt-LaCrosse.htm'),
 	    		'Nordic Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/715011/WI/Nordic-Mountain.htm'),
-	    		'Sunburst' =>'',
+	    		'Sunburst' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/414005/WI/Sunburst.htm'),
 	    		'Trollhaugen' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/715004/WI/Trollhaugen.htm'),
 	    		'Tyrol Basin' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/608005/WI/Tyrol-Basin.htm'),
 	    		'Whitecap Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/715005/WI/Whitecap-Mountain.htm'),
@@ -1000,7 +1003,7 @@ EOD;
 				'Hogadon' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/307003/WY/Hogadon.htm'),
 				'Jackson Hole' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/307008/WY/Jackson-Hole.htm'),
 				'Snow King' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/307006/WY/Snow-King-Ski-Resort.htm'),
-				'Snowy Range' =>'',
+				'Snowy Range' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/4308/WY/Snowy_Range.htm'),
 				'White Pine' => $this->av('http://www.liftopia.com/ski-resort-info/resort/307016/MT/White-Pine.htm')
 	    	),
 	    	'Alberta' => array(
@@ -1060,7 +1063,11 @@ EOD;
 	    		'Stoneham Mountain' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/418009/QC/Stoneham-Mountain-Resort.htm'),
 	    		'Tremblant' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/819009/QC/Mont-Tremblant-Resort.htm'),
 				'Vorlage' => $this->av('http://www.liftopia.com/ski-resort-info/resort/819014/QC/Vorlage.htm')
-			)			
+			),
+			'Chile' => array(
+	    		'La Parva' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/574004/CH/La-Parva.htm'),
+	    		'El Colorado' =>$this->av('http://www.liftopia.com/ski-resort-info/resort/344003/CH/El-Colorado-Farellones.htm'),
+			),			
 	    );
 	    return $tickets;
     }
@@ -1122,7 +1129,6 @@ EOD;
 			<option value="Switzerland"'; if(sanitize_title($this->location) == sanitize_title('Switzerland')) { $output .= $c; } $output .= '>Switzerland</option>
 		</optgroup>
 		<optgroup label="Southern Hemi">
-			
 			<option value="Argentina"'; if(sanitize_title($this->location) == sanitize_title('Argentina')) { $output .= $c; } $output .= '>Argentina</option>
 			<option value="Australia"'; if(sanitize_title($this->location) == sanitize_title('Australia')) { $output .= $c; } $output .= '>Australia</option>
 			<option value="Chile"'; if(sanitize_title($this->location) == sanitize_title('Chile')) { $output .= $c; } $output .= '>Chile</option>

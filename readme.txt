@@ -1,10 +1,10 @@
 === Snow Report ===
 Tags: weather, skiing, snow, mountain, ski mountain, ski report, snow report, weather, snow country, snow depth, ski,snow-report, ski-report, liftopia, liftopia.com, lift tickets, ski tickets
 Requires at least: 2.8
-Tested up to: 3.0.4
+Tested up to: 3.3.1
 Stable tag: trunk
 Contributors: katzwebdesign
-Donate link:https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackkatz%40gmail%2ecom&item_name=Snow%20Report%20for%20WordPress&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
+Donate link:https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackkatz%40gmail%2ecom&item_name=Snow%20Report&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
 
 Get mountain snow reports (including base pack, recent snowfall, and more) in your content or your sidebar.
 
@@ -111,6 +111,9 @@ __Note:__ This is only an issue when caching is turned on.
 
 == Changelog ==
 
+= 1.2.2 =
+* Added support for additional mountains
+
 = 1.2.1 = 
 * Fixed shortcode `measurement` setting - now `measurement="cm"` works properly.
 
@@ -137,6 +140,9 @@ __Note:__ This is only an issue when caching is turned on.
 * Initial launch
 
 == Upgrade Notice ==
+
+= 1.2.2 =
+* Added support for additional mountains
 
 = 1.2.1 = 
 * Fixed shortcode `measurement` setting - now `measurement="cm"` works properly.
