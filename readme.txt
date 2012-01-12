@@ -31,7 +31,7 @@ Andorra, Austria, France, Germany, Italy, Switzerland
 Argentina, Australia, Chile, New Zealand
 
 <h3>Specify a mountain if you have one in mind.</h3>
-Are you wanting to flaunt how much snow Telluride, CO has this winter? Or is Mammoth Mountain, CA the only one for you? You can easily choose to display snow reports from the one mountain you love.
+Are you wanting to flaunt how much snow Telluride has this winter? Or is Mammoth Mountain, CA the only one for you? You can easily choose to display snow reports from the one mountain you love.
 
 Check out the Screenshots section for pictures.
 
@@ -95,7 +95,7 @@ add_filter('snow_report_output', 'replace_snow_data');
 
 = What is the plugin license? =
 
-* This plugin is released under a GPL license.
+* This plugin is released under a GPL license. 
 
 = This plugin slows down my site. =
 Version 1.1 added caching functionality. To enable, go to the options page and check the box next to "Cache Results." If that doesn't work as expected, it is recommended to use a caching plugin (such as WP Super Cache) so that the report isn't re-generated each page load.
