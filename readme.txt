@@ -1,7 +1,7 @@
 === Snow Report ===
 Tags: weather, skiing, snow, mountain, ski mountain, ski report, snow report, weather, snow country, snow depth, ski,snow-report, ski-report, liftopia, liftopia.com, lift tickets, ski tickets
 Requires at least: 2.8
-Tested up to: 3.3.1
+Tested up to: 3.4.1
 Stable tag: trunk
 Contributors: katzwebdesign
 Donate link:https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackkatz%40gmail%2ecom&item_name=Snow%20Report&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
