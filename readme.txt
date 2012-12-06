@@ -1,9 +1,9 @@
 === Snow Report ===
-Tags: weather, skiing, snow, mountain, ski mountain, ski report, snow report, weather, snow country, snow depth, ski,snow-report, ski-report, liftopia, liftopia.com, lift tickets, ski tickets
+Tags: weather, skiing, snow, mountain, ski mountain, ski report, snow report, weather, snow country, snow depth, ski,snow-report, ski-report, liftopia, liftopia.com, lift tickets, ski tickets, on the snow, onthesnow
 Requires at least: 2.8
-Tested up to: 3.4.1
+Tested up to: 3.5
 Stable tag: trunk
-Contributors: katzwebdesign
+Contributors: katzwebdesign, katzwebservices
 Donate link:https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackkatz%40gmail%2ecom&item_name=Snow%20Report&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
 
 Get mountain snow reports (including base pack, recent snowfall, and more) in your content or your sidebar.
@@ -30,13 +30,13 @@ Andorra, Austria, France, Germany, Italy, Switzerland
 <strong>Southern Hemisphere</strong><br />
 Argentina, Australia, Chile, New Zealand
 
-<h3>Specify a mountain if you have one in mind.</h3>
-Are you wanting to flaunt how much snow Telluride has this winter? Or is Mammoth Mountain, CA the only one for you? You can easily choose to display snow reports from the one mountain you love.
+<h3>Specify some mountains if you have one in mind.</h3>
+Are you wanting to flaunt how much snow Telluride, CO has this winter? Or is Mammoth Mountain, CA the only one for you? You can easily choose to display snow reports from the mountains you love.
 
 Check out the Screenshots section for pictures.
 
 <h3>Using the Snow Report Plugin</h3>
-The plugin can be configured in two ways: 
+The plugin can be configured in two ways:
 
 1. Configure the plugin in the admin's Snow Report settings page, then add `[snow_report]` to your content where you want the snow_report to appear.
 2. Go crazy with the `[snow_report]` shortcode. See the "FAQ" tab above.
@@ -58,7 +58,7 @@ The plugin can be configured in two ways:
 1. Embedded in content in the twentyten theme
 1. Embedded in content in the twentyten theme
 
-== Frequently Asked Questions == 
+== Frequently Asked Questions ==
 
 = Using the `[snow_report]` Shortcode =
 If you're a maniac for shortcodes, and you want all control all the time, this is a good way to use it.
@@ -66,7 +66,7 @@ If you're a maniac for shortcodes, and you want all control all the time, this i
 <strong>The shortcode supports the following settings:</strong>
 
 * `location="Colorado"` - It must exactly match one of the "Report Location" drop-down options on the left
-* `caption="Ski Reports for Colorado"` - Add a caption to your table (it's like a title) 
+* `caption="Ski Reports for Colorado"` - Add a caption to your table (it's like a title)
 * `measurement='inches'` - Use either `inches` or `cm`
 * `align='center'` - Align the table cells. Choose from `left`, `center`, or `right`
 * `noresults="Snow reports aren&rsquo;t available right now."` - Message shown when no results are available
@@ -95,7 +95,7 @@ add_filter('snow_report_output', 'replace_snow_data');
 
 = What is the plugin license? =
 
-* This plugin is released under a GPL license. 
+* This plugin is released under a GPL license.
 
 = This plugin slows down my site. =
 Version 1.1 added caching functionality. To enable, go to the options page and check the box next to "Cache Results." If that doesn't work as expected, it is recommended to use a caching plugin (such as WP Super Cache) so that the report isn't re-generated each page load.
@@ -111,13 +111,24 @@ __Note:__ This is only an issue when caching is turned on.
 
 == Changelog ==
 
+= 1.3 =
+* Fixed issue with Array showing up under "Snow Conditions"
+* Reworked the mountain selection process
+    - Added support for multiple mountains at once
+    - You can now use checkboxes to select the mountains you want
+    - You can now use newly added mountain IDs instead of names in the shortcode
+* Improved caching to deal with plugin settings better
+* Improved shortcode handling of data
+* Added Austrian mountain ski ticket support
+* Added more internationalization text support
+
 = 1.2.2 =
 * Added support for additional mountains
 
-= 1.2.1 = 
+= 1.2.1 =
 * Fixed shortcode `measurement` setting - now `measurement="cm"` works properly.
 
-= 1.2 = 
+= 1.2 =
 * Improved caching of tables; this also fixed issues with columns not showing up when checked.
 * Added `cache_hours` option for shortcode and plugin. Defaults to 12 hours.
 * Improved the look of the below-table link
@@ -126,7 +137,7 @@ __Note:__ This is only an issue when caching is turned on.
 = 1.1.2 =
 * Fixed `Missing argument 1 for snow_report::av()` bug (thanks to <a href="http://www.summitsnowreport.com" rel="nofollow">Nick</a> for sharing)
 
-= 1.1.1 = 
+= 1.1.1 =
 * Updated the lift tickets feature so that if a resort has no link, to display nothing (instead of an empty link)
 
 = 1.1 =
@@ -141,13 +152,24 @@ __Note:__ This is only an issue when caching is turned on.
 
 == Upgrade Notice ==
 
+= 1.3 =
+* Fixed issue with Array showing up under "Snow Conditions"
+* Reworked the mountain selection process
+    - Added support for multiple mountains at once
+    - You can now use checkboxes to select the mountains you want
+    - You can now use newly added mountain IDs instead of names in the shortcode
+* Improved caching to deal with plugin settings better
+* Improved shortcode handling of data
+* Added Austrian mountain ski ticket support
+* Added more internationalization text support
+
 = 1.2.2 =
 * Added support for additional mountains
 
-= 1.2.1 = 
+= 1.2.1 =
 * Fixed shortcode `measurement` setting - now `measurement="cm"` works properly.
 
-= 1.2 = 
+= 1.2 =
 * Improved caching of tables; this also fixed issues with columns not showing up when checked.
 * Improved the look of the below-table link
 * Added `cache_hours` option for shortcode and plugin. Defaults to 12 hours.
@@ -156,12 +178,12 @@ __Note:__ This is only an issue when caching is turned on.
 = 1.1.2 =
 * Fixed `Missing argument 1 for snow_report::av()` bug (thanks to <a href="http://www.summitsnowreport.com" rel="nofollow">Nick</a> for sharing)
 
-= 1.1.1 = 
+= 1.1.1 =
 * Updated the lift tickets feature so that if a resort has no link, to display nothing (instead of an empty link)
 
 = 1.1 =
 * Fixes issue with plugin activation conflicting with the <a href="http://wordpress.org/extend/plugins/wunderground/">WP Wunderground</a> plugin
 * May fix shortcode display <a href="http://wordpress.org/support/topic/plugin-snow-report-doesnt-work-on-my-site">issues reported on WordPress.org</a>
 
-= 1.0 = 
+= 1.0 =
 * Blastoff!
